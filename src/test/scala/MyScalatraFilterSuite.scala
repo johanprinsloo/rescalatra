@@ -12,4 +12,18 @@ class MyScalatraFilterSuite extends ScalatraFunSuite with ShouldMatchers {
       status should equal (200)
     }
   }
+
+  test("GET / main page content") {
+    get("/") {
+      status should equal (200)
+      body should include ("hello")
+    }
+  }
+
+  test("GET /hello/:name returns correctly") {
+    get("/hello/Hadviga") {
+      status should equal (200)
+      response.body should equal ("<p>Hello, Hadviga</p>")
+    }
+  }
 }
